@@ -5,6 +5,8 @@ const srcPath = process.env.NODE_ENV === 'production' ? 'dist' : 'src'
 module.exports = {
    'seeders-path': path.resolve(srcPath,  'database', 'seeders'),
    'migrations-path': path.resolve(srcPath,  'database', 'migrations'),
-   'models-path':     path.resolve(srcPath,  'database', 'models'),
+   'models-path': path.resolve(srcPath,  'database', 'models'),
    'config': path.resolve(srcPath, 'database', 'database.config.js'),
 }
+
+
