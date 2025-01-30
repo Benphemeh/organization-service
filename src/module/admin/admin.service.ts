@@ -27,4 +27,11 @@ export class AdminService {
   ): Promise<Organization> {
     return await this.organizationModel.create(createOrganizationDto);
   }
+  async deleteOrganization(id: string): Promise<void> {
+    const organization = await this.organizationModel.findByPk(id);
+    if (!organization) {
+      throw new NotFoundException(`Organization with ID ${id} not found`);
+    }
+    await organization.destroy();
+  }
 }
