@@ -25,7 +25,9 @@ export class AdminService {
   async createOrganization(
     createOrganizationDto: CreateOrganizationDto,
   ): Promise<Organization> {
-    return await this.organizationModel.create(createOrganizationDto);
+    return await this.organizationModel.create<Organization>(
+      createOrganizationDto as any,
+    );
   }
   async deleteOrganization(id: string): Promise<void> {
     const organization = await this.organizationModel.findByPk(id);
