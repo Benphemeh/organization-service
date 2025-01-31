@@ -6,10 +6,12 @@ import {
   Param,
   Delete,
   Patch,
+  UseGuards,
 } from '@nestjs/common';
 import { AdminService } from './admin.service';
 import { CreateOrganizationDto } from '../create-organization/DTO/create-organization.dto';
 import { UpdateOrganizationDto } from '../create-organization/DTO/update-organization.dto';
+import { AdminGuard } from 'src/core/guards/admin.guard';
 
 @Controller('admin')
 export class AdminController {
@@ -19,7 +21,7 @@ export class AdminController {
   async getAllOrganizations() {
     return await this.adminService.findAllOrganizations();
   }
-
+  @UseGuards(AdminGuard)
   @Get('organizations/:id')
   async getOrganizationById(@Param('id') id: string) {
     return await this.adminService.findOrganizationById(id);
