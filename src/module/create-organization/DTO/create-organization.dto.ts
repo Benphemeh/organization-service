@@ -5,5 +5,5 @@ export class CreateOrganizationDto {
   address: string;
   industry: string;
   email: string;
-  phoneNumber: string;
+  phoneNumber: number;
 }
