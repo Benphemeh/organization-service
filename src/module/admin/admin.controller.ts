@@ -1,6 +1,15 @@
-import { Controller, Get, Post, Body, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Param,
+  Delete,
+  Patch,
+} from '@nestjs/common';
 import { AdminService } from './admin.service';
-import { CreateOrganizationDto } from '../create-organization/DTO/create-organization..dto';
+import { CreateOrganizationDto } from '../create-organization/DTO/create-organization.dto';
+import { UpdateOrganizationDto } from '../create-organization/DTO/update-organization.dto';
 
 @Controller('admin')
 export class AdminController {
@@ -21,6 +30,16 @@ export class AdminController {
     @Body() createOrganizationDto: CreateOrganizationDto,
   ) {
     return await this.adminService.createOrganization(createOrganizationDto);
+  }
+  @Patch('organizations/:id')
+  async updateOrganization(
+    @Param('id') id: string,
+    @Body() updateOrganizationDto: UpdateOrganizationDto,
+  ) {
+    return await this.adminService.updateOrganization(
+      id,
+      updateOrganizationDto,
+    );
   }
   @Delete('organizations/:id')
   async deleteOrganization(@Param('id') id: string) {
