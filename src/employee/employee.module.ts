@@ -7,6 +7,6 @@ import { ProducerService } from 'src/kafka/producer/producer.service';
 @Module({
   imports: [KafkaModule],
   providers: [EmployeeService, ProducerService],
-  controllers: [EmployeeController]
+  controllers: [EmployeeController],
 })
 export class EmployeeModule {}
