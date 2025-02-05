@@ -12,4 +12,3 @@ export function OrgTable<M extends Model = Model>(
     deletedAt: 'deleted_at',
   });
 }
-
