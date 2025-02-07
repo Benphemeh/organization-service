@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { KafkaModule } from './kafka/kafka.module';
-import { EmployeeModule } from './employee/employee.module';
+import { EmployeeModule } from './module/employee/employee.module';
 import { AdminModule } from './module/admin/admin.module';
 
 @Module({
