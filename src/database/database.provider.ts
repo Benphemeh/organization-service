@@ -20,7 +20,7 @@ export const databaseProviders = [
         default:
           config = databaseConfig.development;
       }
-      const sequelize = new Sequelize( {
+      const sequelize = new Sequelize({
         ...config,
         dialect: config.dialect,
         models: [__dirname + '/models'],
