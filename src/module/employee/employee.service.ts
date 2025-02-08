@@ -16,7 +16,7 @@ export class EmployeeService {
     });
   }
   async findOne(id: string) {
-    const employee = this.employees.find((emp) => emp.id === Number(id));
+    const employee = this.employees.find((emp) => emp.id === String(id));
     if (!employee) {
       throw new NotFoundException(`Employee with ID ${id} not found`);
     }
