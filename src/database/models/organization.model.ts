@@ -17,11 +17,6 @@ export default class Organization extends BaseModel {
   lastName: string;
 
   @Column({
-    type: DataType.NUMBER,
-    allowNull: true,
-  })
-  age: number;
-  @Column({
     type: DataType.STRING,
     allowNull: true,
   })
@@ -40,8 +35,8 @@ export default class Organization extends BaseModel {
   email: string;
 
   @Column({
-    type: DataType.STRING,
+    type: DataType.NUMBER,
     allowNull: true,
   })
-  phoneNumber: string;
+  phoneNumber: number;
 }

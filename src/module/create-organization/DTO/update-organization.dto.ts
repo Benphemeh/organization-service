@@ -1,4 +1,4 @@
-import { IsEmail, IsNumber, IsOptional, IsString } from 'class-validator';
+import { IsEmail, IsOptional, IsString } from 'class-validator';
 
 export class UpdateOrganizationDto {
   @IsOptional()
@@ -8,10 +8,6 @@ export class UpdateOrganizationDto {
   @IsOptional()
   @IsString()
   lastName?: string;
-
-  @IsOptional()
-  @IsNumber({}, { message: 'Age must be a valid number.' })
-  age?: number;
 
   @IsOptional()
   @IsString()

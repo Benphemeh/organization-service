@@ -1,6 +1,7 @@
 import { Sequelize } from 'sequelize-typescript';
+import { SEQUELIZE, DEVELOPMENT, TEST, PRODUCTION } from 'src/core/constants';
 import { databaseConfig } from './database.config';
-import { DEVELOPMENT, PRODUCTION, SEQUELIZE, TEST } from 'src/core/constants';
+import Organization from './models/organization.model';
 
 export const databaseProviders = [
   {
@@ -20,17 +21,9 @@ export const databaseProviders = [
         default:
           config = databaseConfig.development;
       }
-      const sequelize = new Sequelize({
-        ...config,
-        dialect: config.dialect,
-        models: [__dirname + '/models'],
-        pool: {
-          max: 5,
-          min: 0,
-        },
-        logging: false, // process.env.NODE_ENV !== ENVIRONMENT.TEST,
-        repositoryMode: false,
-      });
+      const sequelize = new Sequelize(config);
+      sequelize.addModels([Organization]);
+      await sequelize.sync();
       return sequelize;
     },
   },
