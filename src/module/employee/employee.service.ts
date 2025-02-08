@@ -1,5 +1,5 @@
 import { Body, Injectable, NotFoundException } from '@nestjs/common';
-import { ProducerService } from 'src/kafka/producer/producer.service';
+import { ProducerService } from 'src/module/producer/producer.service';
 import { EmployeeDto } from './Dto/employee.dto';
 
 @Injectable()

@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-import { ProducerService } from './producer/producer.service';
+import { ProducerService } from '../module/producer/producer.service';
 
 @Module({
   providers: [ProducerService],
