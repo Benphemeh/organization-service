@@ -20,8 +20,4 @@ export class UpdateOrganizationDto {
   @IsOptional()
   @IsEmail({}, { message: 'Please provide a valid email address.' })
   email?: string;
-
-  @IsOptional()
-  @IsString()
-  phoneNumber?: string;
 }

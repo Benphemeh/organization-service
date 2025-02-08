@@ -33,10 +33,4 @@ export default class Organization extends BaseModel {
     allowNull: true,
   })
   email: string;
-
-  @Column({
-    type: DataType.NUMBER,
-    allowNull: true,
-  })
-  phoneNumber: number;
 }
