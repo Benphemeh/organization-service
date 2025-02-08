@@ -27,6 +27,7 @@
     "@nestjs/microservices": "^10.3.3",
     "@nestjs/platform-express": "^10.0.0",
     "@nestjs/sequelize": "github:nestjs/sequelize",
+    "@nestjs/swagger": "^11.0.3",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.1",
     "dotenv": "^16.4.5",
@@ -38,6 +39,7 @@
     "rxjs": "^7.8.1",
     "sequelize": "^6.37.1",
     "sequelize-typescript": "^2.1.6",
+    "swagger-ui-express": "^5.0.1",
     "uuid": "^9.0.1"
   },
   "devDependencies": {
