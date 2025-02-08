@@ -17,12 +17,12 @@ import { AdminGuard } from 'src/core/guards/admin.guard';
 export class AdminController {
   constructor(private readonly adminService: AdminService) {}
 
-  @Get('organizations')
+  @Get()
   async getAllOrganizations() {
     return await this.adminService.findAllOrganizations();
   }
   @UseGuards(AdminGuard)
-  @Get('organizations/:id')
+  @Get(':id')
   async getOrganizationById(@Param('id') id: string) {
     return await this.adminService.findOrganizationById(id);
   }
@@ -33,7 +33,7 @@ export class AdminController {
   ) {
     return await this.adminService.createOrganization(createOrganizationDto);
   }
-  @Patch('organizations/:id')
+  @Patch(':id')
   async updateOrganization(
     @Param('id') id: string,
     @Body() updateOrganizationDto: UpdateOrganizationDto,
@@ -43,7 +43,7 @@ export class AdminController {
       updateOrganizationDto,
     );
   }
-  @Delete('organizations/:id')
+  @Delete(':id')
   async deleteOrganization(@Param('id') id: string) {
     return await this.adminService.deleteOrganization(id);
   }
