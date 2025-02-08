@@ -2,20 +2,21 @@ import { Inject, Injectable, NotFoundException } from '@nestjs/common';
 import { Organization } from 'src/database';
 import { CreateOrganizationDto } from '../create-organization/DTO/create-organization.dto';
 import { UpdateOrganizationDto } from '../create-organization/DTO/update-organization.dto';
+import { REPOSITORY } from 'src/core/constants';
 
 @Injectable()
 export class AdminService {
   constructor(
-    @Inject(Organization)
-    private readonly organizationModel: typeof Organization,
+    @Inject(REPOSITORY.ORGANIZATION)
+    private readonly organizationRepository: typeof Organization,
   ) {}
 
   async findAllOrganizations(): Promise<Organization[]> {
-    return await this.organizationModel.findAll();
+    return await this.organizationRepository.findAll();
   }
 
   async findOrganizationById(id: string): Promise<Organization> {
-    const organization = await this.organizationModel.findByPk(id);
+    const organization = await this.organizationRepository.findByPk(id);
     if (!organization) {
       throw new NotFoundException(`Organization with ID ${id} not found`);
     }
@@ -25,7 +26,7 @@ export class AdminService {
   async createOrganization(
     createOrganizationDto: CreateOrganizationDto,
   ): Promise<Organization> {
-    return await this.organizationModel.create<Organization>(
+    return await this.organizationRepository.create<Organization>(
       createOrganizationDto as any,
     );
   }
@@ -33,7 +34,7 @@ export class AdminService {
     id: string,
     updateOrganizationDto: UpdateOrganizationDto,
   ): Promise<Organization> {
-    const organization = await this.organizationModel.findByPk(id);
+    const organization = await this.organizationRepository.findByPk(id);
     if (!organization) {
       throw new NotFoundException(`Organization with ID ${id} not found`);
     }
@@ -41,7 +42,7 @@ export class AdminService {
   }
 
   async deleteOrganization(id: string): Promise<void> {
-    const organization = await this.organizationModel.findByPk(id);
+    const organization = await this.organizationRepository.findByPk(id);
     if (!organization) {
       throw new NotFoundException(`Organization with ID ${id} not found`);
     }

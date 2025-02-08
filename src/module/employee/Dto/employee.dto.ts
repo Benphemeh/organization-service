@@ -2,7 +2,7 @@ import { IsNotEmpty, IsOptional, IsString } from 'class-validator';
 
 export class EmployeeDto {
   @IsOptional()
-  id: number;
+  id: string;
 
   @IsNotEmpty()
   @IsString()
