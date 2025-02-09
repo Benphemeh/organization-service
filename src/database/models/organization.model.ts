@@ -33,5 +33,4 @@ export default class Organization extends BaseModel {
     allowNull: true,
   })
   email: string;
-
 }
