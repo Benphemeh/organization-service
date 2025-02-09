@@ -16,7 +16,10 @@ export class AdminService {
   }
 
   async findOrganizationById(id: string): Promise<Organization> {
-    const organization = await this.organizationRepository.findByPk(id);
+    const organization =
+      await this.organizationRepository.findOne<Organization>({
+        where: { id },
+      });
     if (!organization) {
       throw new NotFoundException(`Organization with ID ${id} not found`);
     }
