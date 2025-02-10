@@ -6,6 +6,7 @@ import { EmployeeModule } from './module/employee/employee.module';
 import { AdminModule } from './module/admin/admin.module';
 import { ConfigModule } from '@nestjs/config';
 import { DatabaseModule } from './database/database.module';
+import { OrganizationModule } from './module/create-organization/organization.module';
 
 @Module({
   imports: [
@@ -14,6 +15,7 @@ import { DatabaseModule } from './database/database.module';
     KafkaModule,
     EmployeeModule,
     AdminModule,
+    OrganizationModule,
   ],
   controllers: [AppController],
   providers: [AppService],
