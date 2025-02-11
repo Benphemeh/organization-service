@@ -13,6 +13,10 @@ export class OrganizationService {
     return await this.organizationRepository.create<Organization>({ ...user });
   }
 
+  async findAll() {
+    return await this.organizationRepository.findAll(); // Or your preferred query
+  }
+
   //   update(id: string, updateOrganizationDto: UpdateOrganizationDto) {
   //     const organization = this.findOne(id);
   //     if (organization) {
