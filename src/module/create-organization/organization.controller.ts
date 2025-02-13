@@ -1,7 +1,7 @@
-import { Controller, Post, Body, UseGuards, Get } from '@nestjs/common';
+import { Controller, Post, Body, Get, Param, Patch } from '@nestjs/common';
 import { CreateOrganizationDto } from './dto/create-organization.dto';
 import { OrganizationService } from './organization.service';
-import { AuthGuard } from '@nestjs/passport';
+import { UpdateOrganizationDto } from './DTO/update-organization.dto';
 
 @Controller('organizations')
 export class OrganizationController {
@@ -15,5 +15,17 @@ export class OrganizationController {
   @Get()
   findAll() {
     return this.organizationService.findAll();
+  }
+  @Get(':id')
+  findOne(@Param('id') id: string) {
+    return this.organizationService.findOne(id);
+  }
+
+  @Patch(':id')
+  update(
+    @Param('id') id: string,
+    @Body() updateOrganizationDto: UpdateOrganizationDto,
+  ) {
+    return this.organizationService.update(id, updateOrganizationDto);
   }
 }
