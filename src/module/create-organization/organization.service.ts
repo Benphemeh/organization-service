@@ -31,13 +31,10 @@ export class OrganizationService {
       return organization;
     }
   }
-
-  //   update(id: string, updateOrganizationDto: UpdateOrganizationDto) {
-  //     const organization = this.findOne(id);
-  //     if (organization) {
-  //       Object.assign(organization, updateOrganizationDto);
-  //       return organization;
-  //     }
-  //     return null;
-  //   }
+  async remove(id: string): Promise<void> {
+    const organization = await this.findOne(id);
+    if (organization) {
+      await organization.destroy();
+    }
+  }
 }
