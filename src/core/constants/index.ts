@@ -5,4 +5,5 @@ export const PRODUCTION = 'production';
 
 export const REPOSITORY = {
   ORGANIZATION: 'ORGANIZATION_REPOSITORY',
+  ACTIVITY: 'ACTIVITY_REPOSITORY',
 };
