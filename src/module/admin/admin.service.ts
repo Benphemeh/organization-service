@@ -1,5 +1,5 @@
 import { Inject, Injectable, NotFoundException } from '@nestjs/common';
-import { Organization } from 'src/database';
+import { Organization } from 'src/core/database';
 import { CreateOrganizationDto } from '../create-organization/DTO/create-organization.dto';
 import { UpdateOrganizationDto } from '../create-organization/DTO/update-organization.dto';
 import { REPOSITORY } from 'src/core/constants';
