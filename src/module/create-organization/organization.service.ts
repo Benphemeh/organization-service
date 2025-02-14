@@ -1,6 +1,6 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { CreateOrganizationDto } from './dto/create-organization.dto';
-import { Organization } from 'src/database';
+import { Organization } from 'src/core/database';
 import { REPOSITORY } from 'src/core/constants';
 import { UpdateOrganizationDto } from './DTO/update-organization.dto';
 

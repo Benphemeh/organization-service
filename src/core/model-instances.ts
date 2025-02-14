@@ -1,4 +1,4 @@
-import { Organization } from 'src/database';
+import { Organization } from 'src/core/database';
 import { REPOSITORY } from './constants';
 
 export const modelInstances = [

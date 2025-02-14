@@ -10,7 +10,7 @@ import {
 import { AdminService } from './admin.service';
 import { CreateOrganizationDto } from '../create-organization/DTO/create-organization.dto';
 import { UpdateOrganizationDto } from '../create-organization/DTO/update-organization.dto';
-import { Organization } from 'src/database';
+import { Organization } from 'src/core/database';
 
 @Controller('admin')
 export class AdminController {
