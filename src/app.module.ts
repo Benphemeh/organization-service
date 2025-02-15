@@ -20,7 +20,7 @@ import { JwtService } from '@nestjs/jwt';
     OrganizationModule,
   ],
   controllers: [AppController],
-  providers: [AppService, JwtService],
+  providers: [AppService, JwtService, LoggerMiddleware],
 })
 export class AppModule {
   configure(consumer: MiddlewareConsumer) {
