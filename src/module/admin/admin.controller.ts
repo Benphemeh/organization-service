@@ -6,11 +6,13 @@ import {
   Param,
   Delete,
   Patch,
+  UseGuards,
 } from '@nestjs/common';
 import { AdminService } from './admin.service';
 import { CreateOrganizationDto } from '../create-organization/DTO/create-organization.dto';
 import { UpdateOrganizationDto } from '../create-organization/DTO/update-organization.dto';
 import { Organization } from 'src/core/database';
+import { AdminGuard } from 'src/core/guards/admin.guard';
 
 @Controller('admin')
 export class AdminController {
@@ -41,6 +43,7 @@ export class AdminController {
       updateOrganizationDto,
     );
   }
+  @UseGuards(AdminGuard)
   @Delete(':id')
   async deleteOrganization(@Param('id') id: string) {
     return await this.adminService.deleteOrganization(id);
