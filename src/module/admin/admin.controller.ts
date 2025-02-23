@@ -18,6 +18,7 @@ import { AdminGuard } from 'src/core/guards/admin.guard';
 export class AdminController {
   constructor(private readonly adminService: AdminService) {}
 
+  @UseGuards(AdminGuard)
   @Get()
   async getAllOrganizations() {
     return await this.adminService.findAllOrganizations();
@@ -33,7 +34,7 @@ export class AdminController {
   ) {
     return await this.adminService.createOrganization(createOrganizationDto);
   }
-  @UseGuards(AdminGuard)
+
   @Patch(':id')
   async updateOrganization(
     @Param('id') id: string,
