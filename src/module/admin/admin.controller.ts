@@ -33,6 +33,7 @@ export class AdminController {
   ) {
     return await this.adminService.createOrganization(createOrganizationDto);
   }
+  @UseGuards(AdminGuard)
   @Patch(':id')
   async updateOrganization(
     @Param('id') id: string,
