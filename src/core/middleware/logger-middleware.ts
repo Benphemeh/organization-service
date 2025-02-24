@@ -1,15 +1,11 @@
-import { Inject, Injectable, NestMiddleware } from '@nestjs/common';
+import { Injectable, NestMiddleware } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { Request, Response, NextFunction } from 'express';
 import ActivityModel from '../database/models/activity-log.model';
 
 @Injectable()
 export class LoggerMiddleware implements NestMiddleware {
-  constructor(
-    private jwtService: JwtService,
-    // @Inject(ActivityModel)
-    // private readonly activityModel: typeof ActivityModel,
-  ) {}
+  constructor(private jwtService: JwtService) {}
 
   async use(req: Request, res: Response, next: NextFunction) {
     const method = req.method;
