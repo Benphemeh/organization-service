@@ -18,7 +18,7 @@ import { AdminGuard } from 'src/core/guards/admin.guard';
 export class AdminController {
   constructor(private readonly adminService: AdminService) {}
 
-  @UseGuards(AdminGuard)
+  // @UseGuards(AdminGuard)
   @Get()
   async getAllOrganizations() {
     return await this.adminService.findAllOrganizations();
