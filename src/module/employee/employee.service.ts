@@ -15,14 +15,6 @@ export class EmployeeService {
       messages: [{ value: JSON.stringify(employee) }],
     });
   }
-  async findOne(id: string) {
-    const employee = this.employees.find((emp) => emp.id === String(id));
-    if (!employee) {
-      throw new NotFoundException(`Employee with ID ${id} not found`);
-    }
-    return employee;
-  }
-
   async findAll() {
     console.log('fetch all employees');
     await this._kafka.Produce({

@@ -1,9 +1,6 @@
-import { IsNotEmpty, IsOptional, IsString } from 'class-validator';
+import { IsNotEmpty, IsString, IsEmail } from 'class-validator';
 
 export class EmployeeDto {
-  @IsOptional()
-  id: string;
-
   @IsNotEmpty()
   @IsString()
   firstName: string;
@@ -13,5 +10,18 @@ export class EmployeeDto {
   lastName: string;
 
   @IsNotEmpty()
-  age: number;
+  @IsEmail()
+  email: string;
+
+  @IsNotEmpty()
+  @IsString()
+  password: string;
+
+  @IsNotEmpty()
+  @IsString()
+  gender: 'Male' | 'Female' | 'Other';
+
+  @IsNotEmpty()
+  @IsString()
+  role: string;
 }
