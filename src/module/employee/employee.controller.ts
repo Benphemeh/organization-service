@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Post, Put } from '@nestjs/common';
+import { Body, Controller, Get, Post, Put } from '@nestjs/common';
 import { EmployeeService } from './employee.service';
 import { EmployeeDto } from './Dto/employee.dto';
 
@@ -8,10 +8,6 @@ export class EmployeeController {
   @Post()
   async create(@Body() employee: EmployeeDto) {
     await this._service.create(employee);
-  }
-  @Get(':id')
-  async findOne(@Param('id') id: string) {
-    return await this._service.findOne(id);
   }
 
   @Get()
