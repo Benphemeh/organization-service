@@ -1,7 +1,6 @@
 import { Injectable, NestMiddleware } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { Request, Response, NextFunction } from 'express';
-import ActivityModel from '../database/models/activity-log.model';
 
 @Injectable()
 export class LoggerMiddleware implements NestMiddleware {
