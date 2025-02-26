@@ -19,7 +19,7 @@ export class EmployeeDto {
 
   @IsNotEmpty()
   @IsString()
-  gender: 'Male' | 'Female' | 'Other';
+  gender: string;
 
   @IsNotEmpty()
   @IsString()
