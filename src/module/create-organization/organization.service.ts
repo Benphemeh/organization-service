@@ -13,6 +13,11 @@ export class OrganizationService {
   async create(user: CreateOrganizationDto): Promise<Organization> {
     return await this.organizationRepository.create<Organization>({ ...user });
   }
+  async findOneByEmail(email: string): Promise<Organization> {
+    return await this.organizationRepository.findOne<Organization>({
+      where: { email },
+    });
+  }
 
   async findAll() {
     return await this.organizationRepository.findAll(); // Or your preferred query
