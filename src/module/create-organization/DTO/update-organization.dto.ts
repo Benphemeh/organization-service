@@ -1,14 +1,6 @@
-import { IsEmail, IsOptional, IsString } from 'class-validator';
+import { IsOptional, IsString } from 'class-validator';
 
 export class UpdateOrganizationDto {
-  @IsOptional()
-  @IsString()
-  firstName?: string;
-
-  @IsOptional()
-  @IsString()
-  lastName?: string;
-
   @IsOptional()
   @IsString()
   address?: string;
@@ -16,8 +8,4 @@ export class UpdateOrganizationDto {
   @IsOptional()
   @IsString()
   industry?: string;
-
-  @IsOptional()
-  @IsEmail({}, { message: 'Please provide a valid email address.' })
-  email?: string;
 }

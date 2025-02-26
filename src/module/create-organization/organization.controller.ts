@@ -8,7 +8,6 @@ import {
   Delete,
   UseGuards,
 } from '@nestjs/common';
-import { CreateOrganizationDto } from './dto/create-organization.dto';
 import { OrganizationService } from './organization.service';
 import { UpdateOrganizationDto } from './DTO/update-organization.dto';
 import { AuthGuard } from '@nestjs/passport';
@@ -17,10 +16,6 @@ import { AuthGuard } from '@nestjs/passport';
 export class OrganizationController {
   constructor(private readonly organizationService: OrganizationService) {}
 
-  @Post()
-  create(@Body() createOrganizationDto: CreateOrganizationDto) {
-    return this.organizationService.create(createOrganizationDto);
-  }
   @UseGuards(AuthGuard('jwt'))
   @Get()
   findAll() {
