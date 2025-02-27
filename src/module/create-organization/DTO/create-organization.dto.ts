@@ -16,6 +16,6 @@ export class CreateOrganizationDto {
   industry: string;
 
   @IsNotEmpty()
-  @IsEmail({}, { message: 'Please provide a valid email address.' })
+  @IsEmail()
   email: string;
 }
