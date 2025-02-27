@@ -17,11 +17,9 @@ export class EmployeeDto {
   @IsString()
   password: string;
 
-  @IsNotEmpty()
   @IsString()
   gender: string;
 
-  @IsNotEmpty()
   @IsString()
   role: string;
 }
