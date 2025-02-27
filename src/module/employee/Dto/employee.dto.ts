@@ -19,7 +19,4 @@ export class EmployeeDto {
 
   @IsString()
   gender: string;
-
-  @IsString()
-  role: string;
 }
