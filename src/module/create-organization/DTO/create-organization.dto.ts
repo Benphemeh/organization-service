@@ -1,9 +1,11 @@
-import { IsString, IsEmail } from 'class-validator';
+import { IsString, IsEmail, IsNotEmpty } from 'class-validator';
 
 export class CreateOrganizationDto {
+  @IsNotEmpty()
   @IsString()
   firstName: string;
 
+  @IsNotEmpty()
   @IsString()
   lastName: string;
 
@@ -13,6 +15,7 @@ export class CreateOrganizationDto {
   @IsString()
   industry: string;
 
+  @IsNotEmpty()
   @IsEmail({}, { message: 'Please provide a valid email address.' })
   email: string;
 }
