@@ -23,12 +23,4 @@ export class EmployeeService {
     });
     return this.employees;
   }
-
-  async update(@Body() employee: EmployeeDto) {
-    console.log('update');
-    this._kafka.Produce({
-      topic: 'update-employee',
-      messages: [{ value: JSON.stringify(employee) }],
-    });
-  }
 }

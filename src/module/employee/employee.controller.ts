@@ -1,21 +1,17 @@
-import { Body, Controller, Get, Post, Put } from '@nestjs/common';
-import { EmployeeService } from './employee.service';
+import { Body, Controller, Get, Post } from '@nestjs/common';
 import { EmployeeDto } from './Dto/employee.dto';
+import { EmployeeService } from './employee.service';
 
 @Controller('employee')
 export class EmployeeController {
-  constructor(private _service: EmployeeService) {}
+  constructor(private readonly employeeService: EmployeeService) {}
   @Post()
   async create(@Body() employee: EmployeeDto) {
-    await this._service.create(employee);
+    await this.employeeService.create(employee);
   }
 
   @Get()
   async findAll() {
-    return await this._service.findAll();
-  }
-  @Put()
-  async update(@Body() employee: EmployeeDto) {
-    await this._service.update(employee);
+    return await this.employeeService.findAll();
   }
 }
