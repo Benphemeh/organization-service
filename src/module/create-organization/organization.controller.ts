@@ -32,8 +32,4 @@ export class OrganizationController {
   ) {
     return this.organizationService.update(id, updateOrganizationDto);
   }
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.organizationService.remove(id);
-  }
 }
