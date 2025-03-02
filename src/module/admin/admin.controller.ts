@@ -29,7 +29,7 @@ export class AdminController {
     return await this.adminService.findOrganizationById(id);
   }
 
-  @UseGuards(DoesUserExist)
+  // @UseGuards(DoesUserExist)
   @Post('organizations')
   async createOrganization(
     @Body() createOrganizationDto: CreateOrganizationDto,
