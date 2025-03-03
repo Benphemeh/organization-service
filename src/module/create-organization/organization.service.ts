@@ -20,7 +20,7 @@ export class OrganizationService {
   }
 
   async findAll() {
-    return await this.organizationRepository.findAll(); // Or your preferred query
+    return await this.organizationRepository.findAll();
   }
 
   findOne(id: string) {
