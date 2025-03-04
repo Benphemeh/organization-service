@@ -21,9 +21,15 @@ export const databaseProviders = [
         default:
           config = databaseConfig.development;
       }
-      const sequelize = new Sequelize(config);
-      sequelize.addModels([Organization]);
-      await sequelize.sync();
+      const sequelize = new Sequelize({
+        ...config,
+        models: [__dirname + '/models'],
+        dialectOptions: {
+          useUTC: true,
+        },
+        timezone: '+01:00',
+        logging: false,
+      });
       return sequelize;
     },
   },
