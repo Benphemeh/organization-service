@@ -1,4 +1,5 @@
 import { Inject, Injectable } from '@nestjs/common';
+import * as bcrypt from 'bcrypt';
 import { CreateOrganizationDto } from './dto/create-organization.dto';
 import { Organization } from 'src/core/database';
 import { REPOSITORY } from 'src/core/constants';
@@ -9,6 +10,7 @@ export class OrganizationService {
   constructor(
     @Inject(REPOSITORY.ORGANIZATION)
     private readonly organizationRepository: typeof Organization,
+    private readonly organizationService: OrganizationService,
   ) {}
   async create(user: CreateOrganizationDto): Promise<Organization> {
     return await this.organizationRepository.create<Organization>({ ...user });
@@ -17,6 +19,23 @@ export class OrganizationService {
     return await this.organizationRepository.findOne<Organization>({
       where: { email },
     });
+  }
+  async validateUser(username: string, pass: string) {
+    const user = await this.organizationService.findOneByEmail(username);
+    if (!user) {
+      return null;
+    }
+    const match = await this.comparePassword(pass, user.password);
+    if (!match) {
+      return null;
+    }
+    const { ...result } = user['dataValues'];
+    return result;
+  }
+
+  private async comparePassword(enteredPassword, dbPassword) {
+    const match = await bcrypt.compare(enteredPassword, dbPassword);
+    return match;
   }
 
   async findAll() {

@@ -13,6 +13,7 @@ import { CreateOrganizationDto } from '../create-organization/DTO/create-organiz
 import { UpdateOrganizationDto } from '../create-organization/DTO/update-organization.dto';
 import { Organization } from 'src/core/database';
 import { AdminGuard } from 'src/core/guards/admin.guard';
+import { DoesUserExist } from 'src/core/guards/doesUserExist.guard';
 
 @Controller('admin')
 export class AdminController {
