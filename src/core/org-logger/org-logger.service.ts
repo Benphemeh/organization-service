@@ -3,8 +3,6 @@ import { REPOSITORY } from 'src/core/constants';
 import ActivityModel from 'src/database/models/activity-log.model';
 import Log from 'src/database/models/log.model';
 
-
-
 @Injectable()
 export class OrgLoggerService {
   constructor(

@@ -1,16 +1,17 @@
 'use strict';
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const baseModel = require('../base-model/base-model.migration');
 
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('Organizations', {
+    await queryInterface.createTable('organization', {
       ...baseModel(Sequelize),
-      firstName: {
+      first_name: {
         type: Sequelize.STRING,
         allowNull: true,
       },
-      lastName: {
+      last_name: {
         type: Sequelize.STRING,
         allowNull: true,
       },
@@ -29,6 +30,6 @@ module.exports = {
     });
   },
   async down(queryInterface) {
-    await queryInterface.dropTable('Organizations', {});
+    await queryInterface.dropTable('organization', {});
   },
 };

@@ -3,7 +3,6 @@ import { REPOSITORY } from './constants';
 import ActivityModel from 'src/database/models/activity-log.model';
 import Log from 'src/database/models/log.model';
 
-
 export const modelInstances = [
   {
     provide: REPOSITORY.ORGANIZATION,
