@@ -1,7 +1,8 @@
 import { Organization } from 'src/core/database';
 import { REPOSITORY } from './constants';
-import ActivityModel from './database/models/activity-log.model';
-import Log from './database/models/log.model';
+import ActivityModel from 'src/database/models/activity-log.model';
+import Log from 'src/database/models/log.model';
+
 
 export const modelInstances = [
   {

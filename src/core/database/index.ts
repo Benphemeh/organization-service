@@ -1,3 +1,3 @@
-export { default as Organization } from './models/organization.model';
-export { default as Log } from './models/log.model';
-export { default as ActivityModel } from './models/activity-log.model';
+export { default as Organization } from '../../database/models/organization.model';
+export { default as Log } from '../../database/models/log.model';
+export { default as ActivityModel } from '../../database/models/activity-log.model';

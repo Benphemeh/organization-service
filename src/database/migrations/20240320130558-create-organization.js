@@ -1,32 +1,30 @@
 'use strict';
-import baseModel from '../base-model/base-model.migration';
+const baseModel = require('../base-model/base-model.migration');
 
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable('Organizations', {
       ...baseModel(Sequelize),
-      id: {
-        allowNull: false,
-        autoIncrement: true,
-        primaryKey: true,
-        type: Sequelize.STRING,
-      },
       firstName: {
-        allowNull: true,
         type: Sequelize.STRING,
+        allowNull: true,
       },
       lastName: {
-        allowNull: true,
         type: Sequelize.STRING,
+        allowNull: true,
       },
-      createdAt: {
-        allowNull: false,
-        type: Sequelize.DATE,
+      address: {
+        type: Sequelize.STRING,
+        allowNull: true,
       },
-      updatedAt: {
-        allowNull: false,
-        type: Sequelize.DATE,
+      industry: {
+        type: Sequelize.STRING,
+        allowNull: true,
+      },
+      email: {
+        type: Sequelize.STRING,
+        allowNull: true,
       },
     });
   },
