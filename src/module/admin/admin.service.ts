@@ -1,10 +1,4 @@
-import {
-  BadRequestException,
-  Inject,
-  Injectable,
-  NotFoundException,
-} from '@nestjs/common';
-import * as bcrypt from 'bcrypt';
+import { Inject, Injectable, NotFoundException } from '@nestjs/common';
 import { Organization } from 'src/core/database';
 import { CreateOrganizationDto } from '../create-organization/DTO/create-organization.dto';
 import { UpdateOrganizationDto } from '../create-organization/DTO/update-organization.dto';
@@ -31,26 +25,13 @@ export class AdminService {
     }
     return organization;
   }
-  async findOneByEmail(email: string): Promise<Organization> {
-    return await this.organizationRepository.findOne<Organization>({
-      where: { email },
-    });
-  }
 
-  async createOrganization(createOrganizationDto: CreateOrganizationDto) {
-    // Make sure password is included and not null
-    if (!createOrganizationDto.password) {
-      throw new BadRequestException('Password is required');
-    }
-
-    // You might want to hash the password before saving
-    const hashedPassword = await bcrypt.hash(createOrganizationDto.password, 6);
-
-    // Create the organization with the hashed password
-    return this.organizationRepository.create({
-      ...createOrganizationDto,
-      password: hashedPassword,
-    });
+  async createOrganization(
+    createOrganizationDto: CreateOrganizationDto,
+  ): Promise<Organization> {
+    return await this.organizationRepository.create<Organization>(
+      createOrganizationDto as any,
+    );
   }
   async updateOrganization(
     id: string,
