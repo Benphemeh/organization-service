@@ -7,6 +7,7 @@ import {
   Delete,
   Patch,
   UseGuards,
+  BadRequestException,
 } from '@nestjs/common';
 import { AdminService } from './admin.service';
 import { CreateOrganizationDto } from '../create-organization/DTO/create-organization.dto';
@@ -24,8 +25,13 @@ export class AdminController {
     return await this.adminService.findAllOrganizations();
   }
   @Get(':id')
-  async getOrganizationById(@Param('id') id: string): Promise<Organization> {
-    return await this.adminService.findOrganizationById(id);
+  async findOne(@Param('id') id: string) {
+    console.log(`Request for organization with id: ${id}`);
+    // Check if id is undefined or empty
+    if (!id) {
+      throw new BadRequestException('Organization ID is required');
+    }
+    return this.adminService.findOrganizationById(id);
   }
 
   // @UseGuards(DoesUserExist)
