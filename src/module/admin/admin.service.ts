@@ -60,7 +60,6 @@ export class AdminService {
     // Generate JWT token
     const token = this.generateToken(organization);
 
-    // Return organization data and token
     const { ...orgData } = organization.dataValues;
 
     return {
