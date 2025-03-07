@@ -5,11 +5,11 @@ import {
   ForbiddenException,
 } from '@nestjs/common';
 import { Observable } from 'rxjs';
-import { OrganizationService } from 'src/module/create-organization/organization.service';
+import { AdminService } from 'src/module/admin/admin.service';
 
 @Injectable()
 export class DoesUserExist implements CanActivate {
-  constructor(private readonly organizationService: OrganizationService) {}
+  constructor(private readonly adminService: AdminService) {}
 
   canActivate(
     context: ExecutionContext,
@@ -19,7 +19,7 @@ export class DoesUserExist implements CanActivate {
   }
 
   async validateRequest(request) {
-    const userExist = await this.organizationService.findOneByEmail(
+    const userExist = await this.adminService.findOneByEmail(
       request.body.email,
     );
     if (userExist) {

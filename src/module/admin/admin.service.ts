@@ -25,6 +25,11 @@ export class AdminService {
     }
     return organization;
   }
+  async findOneByEmail(email: string): Promise<Organization> {
+    return await this.organizationRepository.findOne<Organization>({
+      where: { email },
+    });
+  }
 
   async createOrganization(
     createOrganizationDto: CreateOrganizationDto,
