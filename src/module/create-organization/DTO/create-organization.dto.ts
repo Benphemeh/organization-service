@@ -18,4 +18,8 @@ export class CreateOrganizationDto {
   @IsNotEmpty()
   @IsEmail()
   email: string;
+
+  @IsString()
+  @IsNotEmpty()
+  password: string;
 }
