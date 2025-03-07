@@ -4,14 +4,12 @@ import { Organization } from 'src/core/database';
 import { REPOSITORY } from 'src/core/constants';
 import { UpdateOrganizationDto } from './DTO/update-organization.dto';
 import { CreateOrganizationDto } from './DTO/create-organization.dto';
-import { AdminService } from '../admin/admin.service'; // Add this import
 
 @Injectable()
 export class OrganizationService {
   constructor(
     @Inject(REPOSITORY.ORGANIZATION)
     private readonly organizationRepository: typeof Organization,
-    private readonly adminService: AdminService,
   ) {}
   async create(user: CreateOrganizationDto): Promise<Organization> {
     return await this.organizationRepository.create<Organization>({ ...user });

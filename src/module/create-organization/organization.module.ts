@@ -9,7 +9,7 @@ import { AdminService } from '../admin/admin.service';
 @Module({
   imports: [DatabaseModule],
   controllers: [OrganizationController],
-  providers: [...organizationProviders, AdminService, OrganizationService],
+  providers: [...organizationProviders, AdminService],
   exports: [OrganizationService],
 })
 export class OrganizationModule {}
