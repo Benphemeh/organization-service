@@ -9,12 +9,14 @@ import { Organization } from 'src/core/database';
 import { CreateOrganizationDto } from '../create-organization/DTO/create-organization.dto';
 import { UpdateOrganizationDto } from '../create-organization/DTO/update-organization.dto';
 import { REPOSITORY } from 'src/core/constants';
+import { JwtService } from '@nestjs/jwt';
 
 @Injectable()
 export class AdminService {
   constructor(
     @Inject(REPOSITORY.ORGANIZATION)
     private readonly organizationRepository: typeof Organization,
+    private readonly jwtService: JwtService,
   ) {}
 
   async findAllOrganizations(): Promise<Organization[]> {
@@ -46,11 +48,31 @@ export class AdminService {
     // You might want to hash the password before saving
     const hashedPassword = await bcrypt.hash(createOrganizationDto.password, 6);
 
-    // Create the organization with the hashed password
-    return this.organizationRepository.create({
+    const organization = await this.organizationRepository.create({
       ...createOrganizationDto,
       password: hashedPassword,
     });
+
+    // Generate JWT token
+    const token = this.generateToken(organization);
+
+    // Return organization data and token
+    const { ...orgData } = organization.dataValues;
+
+    return {
+      organization: orgData,
+      access_token: token,
+    };
+  }
+
+  private generateToken(organization) {
+    const payload = {
+      email: organization.email,
+      sub: organization.id,
+      role: organization.role || 'organization',
+    };
+
+    return this.jwtService.sign(payload);
   }
   async updateOrganization(
     id: string,
