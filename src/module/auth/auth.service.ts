@@ -5,6 +5,7 @@ import { REPOSITORY } from 'src/core/constants';
 import { USER_ROLE } from 'src/core/enums';
 import { Organization } from 'src/core/database';
 import { OrganizationService } from '../create-organization/organization.service';
+import { JwtService } from '@nestjs/jwt';
 
 @Injectable()
 export class AuthService implements OnModuleInit {
@@ -12,7 +13,7 @@ export class AuthService implements OnModuleInit {
     @Inject(REPOSITORY.ORGANIZATION)
     private readonly organizationRepository: typeof Organization,
     private readonly organizationService: OrganizationService,
-    // private readonly jwtService: JwtService,
+    private readonly jwtService: JwtService,
   ) {}
 
   async onModuleInit() {
@@ -58,6 +59,30 @@ export class AuthService implements OnModuleInit {
     }
     const { ...result } = user['dataValues'];
     return result;
+  }
+  public async login(user) {
+    const token = await this.generateToken(user);
+
+    return {
+      user: {
+        id: user.id,
+        email: user.email,
+        firstName: user.firstName,
+        lastName: user.lastName,
+        role: user.role,
+      },
+      access_token: token,
+    };
+  }
+
+  private async generateToken(user) {
+    const payload = {
+      email: user.email,
+      sub: user.id,
+      role: user.role,
+    };
+
+    return this.jwtService.sign(payload);
   }
   private async comparePassword(enteredPassword, dbPassword) {
     const match = await bcrypt.compare(enteredPassword, dbPassword);

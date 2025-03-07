@@ -10,6 +10,7 @@ import { OrganizationModule } from './module/create-organization/organization.mo
 import { LoggerMiddleware } from './core/middleware/logger-middleware';
 import { JwtService } from '@nestjs/jwt';
 import { DatabaseModule } from './database/database.module';
+import { AuthModule } from './module/auth/auth.module';
 
 @Module({
   imports: [
@@ -19,6 +20,7 @@ import { DatabaseModule } from './database/database.module';
     EmployeeModule,
     AdminModule,
     OrganizationModule,
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService, JwtService, LoggerMiddleware],

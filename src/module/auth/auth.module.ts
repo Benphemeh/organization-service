@@ -9,6 +9,7 @@ import { OrganizationController } from '../create-organization/organization.cont
 import { LocalStrategy } from './local.strategy';
 import { AdminService } from '../admin/admin.service';
 import { AuthService } from './auth.service';
+import { AuthController } from './auth.controller';
 
 @Module({
   imports: [
@@ -27,6 +28,6 @@ import { AuthService } from './auth.service';
     ...modelInstances,
     AdminService,
   ],
-  controllers: [OrganizationController],
+  controllers: [OrganizationController, AuthController],
 })
 export class AuthModule {}
