@@ -21,7 +21,7 @@ module.exports = {
     });
   },
 
-  async down(queryInterface, Sequelize) {
+  async down(queryInterface) {
     // Remove the password column if rolling back
     await queryInterface.removeColumn('organization', 'password');
   },
