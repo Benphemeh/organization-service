@@ -1,6 +1,5 @@
-import { BadRequestException, Inject, Injectable, NotFoundException, OnModuleInit } from '@nestjs/common';
+import { Inject, Injectable, OnModuleInit } from '@nestjs/common';
 import * as bcrypt from 'bcrypt';
-// import { JwtService } from '@nestjs/jwt';
 import { REPOSITORY } from 'src/core/constants';
 import { USER_ROLE } from 'src/core/enums';
 import { Organization } from 'src/core/database';
@@ -68,24 +67,6 @@ export class AuthService implements OnModuleInit {
       access_token: token,
     };
   }
-  // async findOrganizationById(id: string): Promise<Organization> {
-  //   console.log(`Finding organization with ID: ${id}`);
-
-  //   if (!id) {
-  //     throw new BadRequestException('Organization ID is required');
-  //   }
-
-  //   const organization =
-  //     await this.organizationRepository.findOne<Organization>({
-  //       where: { id },
-  //     });
-
-  //   if (!organization) {
-  //     throw new NotFoundException(`Organization with ID ${id} not found`);
-  //   }
-
-  //   return organization;
-  // }
 
   private async generateToken(user) {
     const payload = {
