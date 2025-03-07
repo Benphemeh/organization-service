@@ -20,7 +20,6 @@ export class OrganizationService {
     });
   }
   async validateUser(username: string, pass: string) {
-    // Changed from this.organizationService to this (since we're in the same service)
     const user = await this.findOneByEmail(username);
     if (!user) {
       return null;
