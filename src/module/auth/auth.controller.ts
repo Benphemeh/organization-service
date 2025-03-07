@@ -2,13 +2,10 @@ import {
   Controller,
   Body,
   Post,
-  UseGuards,
   HttpException,
   HttpStatus,
-  Req,
   UnauthorizedException,
 } from '@nestjs/common';
-import { AuthGuard } from '@nestjs/passport';
 import { AuthService } from './auth.service';
 import { LoginDto } from './dto/login.dto';
 
@@ -16,7 +13,7 @@ import { LoginDto } from './dto/login.dto';
 export class AuthController {
   constructor(private authService: AuthService) {}
 
-//   @UseGuards(AuthGuard('jwt'))
+  //   @UseGuards(AuthGuard('jwt'))
   @Post('login')
   async login(@Body() data: LoginDto) {
     try {
