@@ -5,37 +5,31 @@ const baseModel = require('../base-model/base-model.migration');
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    return queryInterface.createTable('activity_log', {
+    await queryInterface.createTable('Organization', {
       ...baseModel(Sequelize),
-      url: {
+      firstName: {
         type: Sequelize.STRING,
         allowNull: true,
       },
-      method: {
+      lastName: {
         type: Sequelize.STRING,
         allowNull: true,
       },
-      body: {
-        type: Sequelize.JSON,
+      address: {
+        type: Sequelize.STRING,
         allowNull: true,
       },
-      headers: {
-        type: Sequelize.JSON,
+      industry: {
+        type: Sequelize.STRING,
         allowNull: true,
       },
-      timestamp: {
-        type: Sequelize.DATE,
-        allowNull: false,
-        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
-      },
-      user: {
+      email: {
         type: Sequelize.STRING,
         allowNull: true,
       },
     });
   },
-
   async down(queryInterface) {
-    await queryInterface.dropTable('activity_log', {});
+    await queryInterface.dropTable('Organization', {});
   },
 };

@@ -15,7 +15,11 @@ export default class Organization extends BaseModel {
     allowNull: true,
   })
   lastName: string;
-
+  password: string;
+  @Column({
+    type: DataType.STRING,
+    allowNull: false,
+  })
   @Column({
     type: DataType.STRING,
     allowNull: true,

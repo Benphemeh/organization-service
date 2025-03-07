@@ -1,14 +1,17 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { CreateOrganizationDto } from './dto/create-organization.dto';
+import * as bcrypt from 'bcrypt';
 import { Organization } from 'src/core/database';
 import { REPOSITORY } from 'src/core/constants';
 import { UpdateOrganizationDto } from './DTO/update-organization.dto';
+import { CreateOrganizationDto } from './DTO/create-organization.dto';
+import { AdminService } from '../admin/admin.service'; // Add this import
 
 @Injectable()
 export class OrganizationService {
   constructor(
     @Inject(REPOSITORY.ORGANIZATION)
     private readonly organizationRepository: typeof Organization,
+    private readonly adminService: AdminService,
   ) {}
   async create(user: CreateOrganizationDto): Promise<Organization> {
     return await this.organizationRepository.create<Organization>({ ...user });
@@ -17,6 +20,24 @@ export class OrganizationService {
     return await this.organizationRepository.findOne<Organization>({
       where: { email },
     });
+  }
+  async validateUser(username: string, pass: string) {
+    // Changed from this.organizationService to this (since we're in the same service)
+    const user = await this.findOneByEmail(username);
+    if (!user) {
+      return null;
+    }
+    const match = await this.comparePassword(pass, user.password);
+    if (!match) {
+      return null;
+    }
+    const { ...result } = user['dataValues'];
+    return result;
+  }
+
+  private async comparePassword(enteredPassword, dbPassword) {
+    const match = await bcrypt.compare(enteredPassword, dbPassword);
+    return match;
   }
 
   async findAll() {
