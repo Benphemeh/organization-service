@@ -10,8 +10,8 @@ export class EmployeeController {
     await this.employeeService.create(employee);
   }
 
-  @Get()
-  async findAll() {
-    return await this.employeeService.findAll();
-  }
+  // @Get()
+  // async findAll() {
+  //   return await this.employeeService.findAll();
+  // }
 }
