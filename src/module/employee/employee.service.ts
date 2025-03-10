@@ -15,12 +15,12 @@ export class EmployeeService {
       messages: [{ value: JSON.stringify(employee) }],
     });
   }
-  async findAll() {
-    console.log('fetch all employees');
-    await this._kafka.Produce({
-      topic: 'fetch-all-employees',
-      messages: [{ value: 'Fetching all employees' }],
-    });
-    return this.employees;
-  }
+  // async findAll() {
+  //   console.log('fetch all employees');
+  //   await this._kafka.Produce({
+  //     topic: 'fetch-all-employees',
+  //     messages: [{ value: 'Fetching all employees' }],
+  //   });
+  //   return this.employees;
+  // }
 }
