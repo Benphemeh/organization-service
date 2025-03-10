@@ -26,7 +26,6 @@ export class AdminController {
   @Get(':id')
   async findOne(@Param('id') id: string) {
     console.log(`Request for organization with id: ${id}`);
-    // Check if id is undefined or empty
     if (!id) {
       throw new BadRequestException('Organization ID is required');
     }
