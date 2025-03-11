@@ -2,8 +2,8 @@ import { Inject, Injectable } from '@nestjs/common';
 import * as bcrypt from 'bcrypt';
 import { Organization } from 'src/core/database';
 import { REPOSITORY } from 'src/core/constants';
-import { UpdateOrganizationDto } from './DTO/update-organization.dto';
-import { CreateOrganizationDto } from './DTO/create-organization.dto';
+import { UpdateOrganizationDto } from './dto/update-organization.dto';
+import { CreateOrganizationDto } from './dto/create-organization.dto';
 
 @Injectable()
 export class OrganizationService {
