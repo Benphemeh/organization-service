@@ -1,4 +1,4 @@
-import { Controller, Body, Get, Param, Patch, UseGuards } from '@nestjs/common';
+import { Controller, Body, Get, Param, Patch, UseGuards, Delete } from '@nestjs/common';
 import { OrganizationService } from './organization.service';
 import { UpdateOrganizationDto } from './DTO/update-organization.dto';
 import { AuthGuard } from '@nestjs/passport';
@@ -23,5 +23,9 @@ export class OrganizationController {
     @Body() updateOrganizationDto: UpdateOrganizationDto,
   ) {
     return this.organizationService.update(id, updateOrganizationDto);
+  }
+  @Delete(':id')
+  remove(@Param('id') id: string) {
+    return this.organizationService.remove(id);
   }
 }

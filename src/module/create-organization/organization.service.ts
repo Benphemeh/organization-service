@@ -54,4 +54,8 @@ export class OrganizationService {
       return organization;
     }
   }
+  async remove(id: string): Promise<void> {
+    const organization = await this.findOne(id);
+    await organization.destroy();
+  }
 }
