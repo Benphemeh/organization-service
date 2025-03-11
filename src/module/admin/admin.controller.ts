@@ -10,8 +10,8 @@ import {
   BadRequestException,
 } from '@nestjs/common';
 import { AdminService } from './admin.service';
-import { CreateOrganizationDto } from '../create-organization/DTO/create-organization.dto';
-import { UpdateOrganizationDto } from '../create-organization/DTO/update-organization.dto';
+import { CreateOrganizationDto } from '../create-organization/dto/create-organization.dto';
+import { UpdateOrganizationDto } from '../create-organization/dto/update-organization.dto';
 import { AdminGuard } from 'src/core/guards/admin.guard';
 
 @Controller('admin')
