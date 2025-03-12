@@ -10,6 +10,7 @@ import {
 import { OrganizationService } from './organization.service';
 import { UpdateOrganizationDto } from './dto/update-organization.dto';
 import { AuthGuard } from '@nestjs/passport';
+import { AdminGuard } from 'src/core/guards/admin.guard';
 
 @Controller('organizations')
 export class OrganizationController {
@@ -32,6 +33,7 @@ export class OrganizationController {
   ) {
     return this.organizationService.update(id, updateOrganizationDto);
   }
+  @UseGuards(AdminGuard)
   @Delete(':id')
   remove(@Param('id') id: string) {
     return this.organizationService.remove(id);
