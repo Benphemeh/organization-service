@@ -47,6 +47,7 @@ export class AuthService implements OnModuleInit {
     }
   }
 
+  // Validate user credentials
   async validateUser(username: string, pass: string) {
     const user = await this.organizationService.findOneByEmail(username);
     if (!user) {

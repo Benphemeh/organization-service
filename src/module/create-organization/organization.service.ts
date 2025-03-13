@@ -19,6 +19,7 @@ export class OrganizationService {
       where: { email },
     });
   }
+  // Validate user credentials
   async validateUser(username: string, pass: string) {
     const user = await this.findOneByEmail(username);
     if (!user) {
