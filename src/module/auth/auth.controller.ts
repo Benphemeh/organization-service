@@ -25,7 +25,7 @@ export class AuthController {
         throw new UnauthorizedException('Invalid credentials');
       }
 
-      // Generate JWT token and return user data
+      // Generate JWT token then returns user data
       return await this.authService.login(user);
     } catch (error) {
       throw new HttpException(error.message, HttpStatus.BAD_REQUEST);
