@@ -13,6 +13,7 @@ import { AdminService } from './admin.service';
 import { CreateOrganizationDto } from '../create-organization/dto/create-organization.dto';
 import { UpdateOrganizationDto } from '../create-organization/dto/update-organization.dto';
 import { AdminGuard } from 'src/core/guards/admin.guard';
+import { DoesUserExist } from 'src/core/guards/doesUserExist.guard';
 
 @Controller('admin')
 export class AdminController {
@@ -32,7 +33,7 @@ export class AdminController {
     return this.adminService.findOrganizationById(id);
   }
 
-  // @UseGuards(DoesUserExist)
+  @UseGuards(DoesUserExist)
   @Post('organizations')
   async createOrganization(
     @Body() createOrganizationDto: CreateOrganizationDto,
