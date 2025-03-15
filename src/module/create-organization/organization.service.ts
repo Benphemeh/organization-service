@@ -1,4 +1,4 @@
-import { Inject, Injectable } from '@nestjs/common';
+import { Inject, Injectable, NotFoundException } from '@nestjs/common';
 import * as bcrypt from 'bcrypt';
 import { Organization } from 'src/core/database';
 import { REPOSITORY } from 'src/core/constants';
@@ -11,13 +11,20 @@ export class OrganizationService {
     @Inject(REPOSITORY.ORGANIZATION)
     private readonly organizationRepository: typeof Organization,
   ) {}
+  // Create a new organization
   async create(user: CreateOrganizationDto): Promise<Organization> {
     return await this.organizationRepository.create<Organization>({ ...user });
   }
+  // Find an organization by email
   async findOneByEmail(email: string): Promise<Organization> {
-    return await this.organizationRepository.findOne<Organization>({
-      where: { email },
-    });
+    const organization =
+      await this.organizationRepository.findOne<Organization>({
+        where: { email },
+      });
+    if (!organization) {
+      throw new NotFoundException('Organization not found');
+    }
+    return organization;
   }
 
   async validateUser(username: string, pass: string) {
@@ -42,21 +49,35 @@ export class OrganizationService {
     return await this.organizationRepository.findAll();
   }
 
-  findOne(id: string) {
-    return this.organizationRepository.findOne({
+  // Find an organization by ID
+  async findOne(id: string): Promise<Organization> {
+    const organization = await this.organizationRepository.findOne({
       where: { id },
     });
+    if (!organization) {
+      throw new NotFoundException('Organization not found');
+    }
+    return organization;
   }
 
-  update(id: string, updateOrganizationDto: UpdateOrganizationDto) {
-    const organization = this.findOne(id);
-    if (organization) {
-      Object.assign(organization, updateOrganizationDto);
-      return organization;
+  // Update an organization by ID
+  async update(
+    id: string,
+    updateOrganizationDto: UpdateOrganizationDto,
+  ): Promise<Organization> {
+    const organization = await this.findOne(id);
+    if (!organization) {
+      throw new NotFoundException('Organization not found');
     }
+    return await organization.update(updateOrganizationDto);
   }
+
+  // Remove an organization by ID
   async remove(id: string): Promise<void> {
     const organization = await this.findOne(id);
+    if (!organization) {
+      throw new NotFoundException('Organization not found');
+    }
     await organization.destroy();
   }
 }

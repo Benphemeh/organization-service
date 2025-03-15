@@ -19,32 +19,7 @@ export class AdminService {
     private readonly jwtService: JwtService,
   ) {}
 
-  async findAllOrganizations(): Promise<Organization[]> {
-    return await this.organizationRepository.findAll();
-  }
-
-  async findOrganizationById(id: string): Promise<Organization> {
-    if (!id) {
-      throw new BadRequestException('Organization ID is required');
-    }
-
-    const organization =
-      await this.organizationRepository.findOne<Organization>({
-        where: { id },
-      });
-
-    if (!organization) {
-      throw new NotFoundException(`Organization with ID ${id} not found`);
-    }
-
-    return organization;
-  }
-  async findOneByEmail(email: string): Promise<Organization> {
-    return await this.organizationRepository.findOne<Organization>({
-      where: { email },
-    });
-  }
-
+  // Create a new organization
   async createOrganization(createOrganizationDto: CreateOrganizationDto) {
     if (!createOrganizationDto.password) {
       throw new BadRequestException('Password is required');
@@ -66,6 +41,35 @@ export class AdminService {
       organization: orgData,
       access_token: token,
     };
+  }
+
+  // Find all organizations
+  async findAllOrganizations(): Promise<Organization[]> {
+    return await this.organizationRepository.findAll();
+  }
+
+  // Find an organization by ID
+  async findOrganizationById(id: string): Promise<Organization> {
+    if (!id) {
+      throw new BadRequestException('Organization ID is required');
+    }
+
+    const organization =
+      await this.organizationRepository.findOne<Organization>({
+        where: { id },
+      });
+
+    if (!organization) {
+      throw new NotFoundException(`Organization with ID ${id} not found`);
+    }
+
+    return organization;
+  }
+  // Find an organization by email
+  async findOneByEmail(email: string): Promise<Organization> {
+    return await this.organizationRepository.findOne<Organization>({
+      where: { email },
+    });
   }
 
   private generateToken(organization) {
