@@ -19,7 +19,14 @@ import { DoesUserExist } from 'src/core/guards/doesUserExist.guard';
 export class AdminController {
   constructor(private readonly adminService: AdminService) {}
 
-  // @UseGuards(AdminGuard)
+  @UseGuards(DoesUserExist)
+  @Post('organizations')
+  async createOrganization(
+    @Body() createOrganizationDto: CreateOrganizationDto,
+  ) {
+    return await this.adminService.createOrganization(createOrganizationDto);
+  }
+
   @Get()
   async getAllOrganizations() {
     return await this.adminService.findAllOrganizations();
@@ -31,14 +38,6 @@ export class AdminController {
       throw new BadRequestException('Organization ID is required');
     }
     return this.adminService.findOrganizationById(id);
-  }
-
-  @UseGuards(DoesUserExist)
-  @Post('organizations')
-  async createOrganization(
-    @Body() createOrganizationDto: CreateOrganizationDto,
-  ) {
-    return await this.adminService.createOrganization(createOrganizationDto);
   }
 
   @Patch(':id')
