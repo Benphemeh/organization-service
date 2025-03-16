@@ -48,7 +48,6 @@ export class AdminService {
     return await this.organizationRepository.findAll();
   }
 
-  // Find an organization by ID
   async findOrganizationById(id: string): Promise<Organization> {
     if (!id) {
       throw new BadRequestException('Organization ID is required');
