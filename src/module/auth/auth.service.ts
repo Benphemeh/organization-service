@@ -46,7 +46,7 @@ export class AuthService implements OnModuleInit {
         .catch((err) => console.log('could not create admin', err));
     }
   }
-
+  //validate user
   async validateUser(username: string, pass: string) {
     const user = await this.organizationService.findOneByEmail(username);
     if (!user) {
