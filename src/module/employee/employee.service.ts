@@ -1,4 +1,4 @@
-import { Body, Injectable, NotFoundException } from '@nestjs/common';
+import { Body, Injectable } from '@nestjs/common';
 import { ProducerService } from 'src/module/producer/producer.service';
 import { EmployeeDto } from './Dto/employee.dto';
 
