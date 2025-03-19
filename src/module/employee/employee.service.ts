@@ -9,7 +9,7 @@ export class EmployeeService {
   constructor(private readonly _kafka: ProducerService) {}
 
   async create(@Body() employee: EmployeeDto) {
-    console.log('create');
+    console.log('employee created');
     this._kafka.Produce({
       topic: 'create-employee',
       messages: [{ value: JSON.stringify(employee) }],
