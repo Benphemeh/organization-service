@@ -10,7 +10,7 @@ export class ProducerController {
   async sendMessage(@Body() record: ProducerRecord) {
     try {
       await this.producerService.Produce(record);
-      return { status: 'success', message: 'Message sent successfully' };
+      return { status: 'success', message: 'Message successfully sent' };
     } catch (error) {
       return { status: 'error', message: 'Failed to send message', error };
     }
