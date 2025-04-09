@@ -6,13 +6,9 @@ import { ProducerRecord } from 'kafkajs';
 export class ProducerController {
   constructor(private readonly producerService: ProducerService) {}
 
-  @Post('send')
+  @Post()
   async sendMessage(@Body() record: ProducerRecord) {
-    try {
-      await this.producerService.Produce(record);
-      return { status: 'success', message: 'Message successfully sent' };
-    } catch (error) {
-      return { status: 'error', message: 'Failed to send message', error };
-    }
+    await this.producerService.Produce(record);
+    return { status: 'success', message: 'Message successfully sent' };
   }
 }
