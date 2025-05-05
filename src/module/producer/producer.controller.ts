@@ -16,13 +16,13 @@ export class ProducerController {
     const topics = await this.producerService.listTopics();
     return { status: 'success', topics };
   }
-  // Endpoint to fetch metadata for a specific Kafka topic
+
   @Get('topics/:topic')
   async getTopicDetails(@Param('topic') topic: string) {
     const details = await this.producerService.getTopicDetails(topic);
     return { status: 'success', details };
   }
-  // Endpoint to delete a Kafka topic
+
   @Delete('topics/:topic')
   async deleteTopic(@Param('topic') topic: string) {
     await this.producerService.deleteTopic(topic);
