@@ -38,13 +38,11 @@ export class ProducerService implements OnModuleInit, OnApplicationShutdown {
     return topics;
   }
 
-  // Fetch metadata for a specific Kafka topic
   async getTopicDetails(topic: string): Promise<any> {
     const metadata = await this.admin.fetchTopicMetadata({ topics: [topic] });
     return metadata;
   }
 
-  // Delete a Kafka topic
   async deleteTopic(topic: string): Promise<void> {
     await this.admin.deleteTopics({
       topics: [topic],
